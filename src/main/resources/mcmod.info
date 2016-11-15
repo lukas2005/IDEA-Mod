@@ -1,0 +1,16 @@
+[
+{
+  "modid": "idea",
+  "name": "Minecraft IDEA Mod",
+  "description": "This mod is a compilation of ideas for Minecraft",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["lukas2005"],
+  "credits": "",
+  "logoFile": "IDEA_Mod_Logo.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]
