@@ -6,6 +6,7 @@ import lukas2005.idea.Items.ModItems;
 import lukas2005.idea.proxy.IProxy;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -20,7 +21,7 @@ public class IDEAMod {
 	@SidedProxy(modId = Reference.MODID, serverSide = Reference.SERVER_PROXY, clientSide = Reference.CLIENT_PROXY)
 	public static IProxy proxy;
 	
-	@Instance(value = Reference.MODID)
+	@Instance(Reference.MODID)
 	public static IDEAMod INSTANCE;
 	
 	@EventHandler
@@ -30,7 +31,21 @@ public class IDEAMod {
 		
 		MinecraftForge.EVENT_BUS.register(new EventHooks());
 		
+		if (!e.getSuggestedConfigurationFile().exists()) {
+			
+			
+			
+		}
+		
 		Reference.CONFIG = new Configuration(e.getSuggestedConfigurationFile());
+		
+		Reference.CONFIG.setCategoryComment("GENERAL CONFIG", "GENERAL CONFIGURATION FOR IDEA MOD");
+		
+		Property tmpp = Reference.CONFIG.get("GENERAL CONFIG", "useWeight", true);
+		
+		tmpp.setComment("Use weight system?");
+		
+		Reference.CONFIG_USE_WEIGHT = tmpp.getBoolean();
 		
 		ModItems.main();
 		//Logger.info("Loaded and registered succesfully: " + ModItems.ITEMS.size() + " Items");

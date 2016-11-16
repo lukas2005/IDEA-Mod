@@ -18,5 +18,7 @@ public class Reference {
 	public static final String SERVER_PROXY = "lukas2005.idea.proxy.ServerProxy";
 
 	public static Configuration CONFIG = null;
+
+	public static Boolean CONFIG_USE_WEIGHT = true;
 	
 }

@@ -17,21 +17,21 @@ public class CustomValues {
 		config.addCustomCategoryComment("BLOCKS WEIGHT", "Here you can change how much ceratin blocks weight");
 		
 		for (Block block : Block.REGISTRY) {
-			
-			Property pr = config.get("BLOCKS WEIGHT", block.getRegistryName().toString(), "1.0");
-			
-			BLOCKWEIGHT.put(block, Float.parseFloat(pr.getString()));
-			
-			Logger.info("Weight of " + block.getRegistryName().toString()+"="+Float.parseFloat(pr.getString()));
-			
-			pr.setComment("Weight of " + block.getRegistryName().toString());
-			
+			if (Reference.CONFIG_USE_WEIGHT) {
+				Property pr = config.get("BLOCKS WEIGHT", block.getRegistryName().toString(), "1.0");
+				
+				BLOCKWEIGHT.put(block, Float.parseFloat(pr.getString()));
+				
+				Logger.info("Weight of " + block.getRegistryName().toString()+"="+Float.parseFloat(pr.getString()));
+				
+				pr.setComment("Weight of " + block.getRegistryName().toString());
+			} else {BLOCKWEIGHT.put(block, Float.parseFloat("0.0"));}
 		}
 		
 		config.addCustomCategoryComment("ITEMS WEIGHT", "Here you can change how much ceratin items weight");
 		
 		for (Item item : Item.REGISTRY) {
-			
+			if (Reference.CONFIG_USE_WEIGHT) {
 			Property pr = config.get("ITEMS WEIGHT", item.getRegistryName().toString(), "1.0");
 			
 			ITEMWEIGHT.put(item, Float.parseFloat(pr.getString()));
@@ -39,8 +39,9 @@ public class CustomValues {
 			Logger.info("Weight of "+item.getRegistryName().toString()+"="+Float.parseFloat(pr.getString()));
 			
 			pr.setComment("Weight of " + item.getRegistryName().toString());
-			
+			} else {ITEMWEIGHT.put(item, Float.parseFloat("0.0"));}
 		}
+		
 		config.save();
 	}
 	
