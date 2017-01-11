@@ -10,7 +10,7 @@ public class Logger {
 	public static final Marker STACKTRACE_MARKER = MarkerManager.getMarker("Stack Trace Marker");
 	
 	private static org.apache.logging.log4j.Logger logger;
-
+	
 	public static void log(Level level, String format, Object... data) {
 		logger.printf(level, format, data);
 	}
@@ -71,6 +71,10 @@ public class Logger {
 		log(Level.WARN, marker, format, data);
 	}
 
+	public static void info(Object format) {
+		log(Level.INFO, format.toString(), new Object());
+	}
+	
 	public static void info(String format, Object... data) {
 		log(Level.INFO, format, data);
 	}
