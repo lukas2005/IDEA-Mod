@@ -110,7 +110,7 @@ public interface IPlayerData {
 			 public <T> T getCapability(Capability<T> capability, EnumFacing facing)
 			 {
 
-			 	return this.instance;
+			 	return (T)this.instance;
 
 			 }
 
