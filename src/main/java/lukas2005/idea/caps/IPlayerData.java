@@ -108,21 +108,20 @@ public interface IPlayerData {
 			 @Override
 
 			 public <T> T getCapability(Capability<T> capability, EnumFacing facing)
-
 			 {
 
-			 return capability == ModCaps.PLAYER_DATA_CAP ? ModCaps.PLAYER_DATA_CAP.<T> cast(this.instance) : null;
+			 	return this.instance;
 
 			 }
 
 			@Override
 			public NBTTagCompound serializeNBT() {
-				return (NBTTagCompound) ModCaps.PLAYER_DATA_CAP.getStorage().writeNBT(ModCaps.PLAYER_DATA_CAP, this.instance, null);
+				return (NBTTagCompound) this.instance.getStorage().writeNBT(ModCaps.PLAYER_DATA_CAP, this.instance, null);
 			}
 
 			@Override
 			public void deserializeNBT(NBTTagCompound nbt) {
-				 ModCaps.PLAYER_DATA_CAP.getStorage().readNBT(ModCaps.PLAYER_DATA_CAP, this.instance, null, nbt);
+				this.instance.getStorage().readNBT(ModCaps.PLAYER_DATA_CAP, this.instance, null, nbt);
 			}
 			
 			
