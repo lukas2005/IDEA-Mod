@@ -28,12 +28,8 @@ public class EventHooks {
 	}
 	
 	@SubscribeEvent
-	public void attachCap(AttachCapabilitiesEvent<Entity> e) {
-		if (e.getObject() instanceof EntityPlayer) {
-			
-			e.addCapability(new ResourceLocation(Reference.MODID, "PlayerData"), new IPlayerData.Provider((EntityPlayer) e.getObject()));                   
-			
-		}
+	public void onPlayerAttachCap(AttachCapabilitiesEvent<EntityPlayer> e) {			
+		e.addCapability(new ResourceLocation(Reference.MODID, "PlayerData"), new IPlayerData.Provider(e.getObject()));                   
 	}
 	
 	@SubscribeEvent
