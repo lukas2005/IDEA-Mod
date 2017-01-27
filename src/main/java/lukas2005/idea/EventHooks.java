@@ -20,16 +20,22 @@ public class EventHooks {
 	public void onPlayerTick(PlayerTickEvent e) {
 		if (e.phase == TickEvent.Phase.END) {
 			IPlayerData CAP = e.player.getCapability(ModCaps.PLAYER_DATA_CAP, null);
+			Logger.info(CAP != null);
 			
-			//CAP.setStrength(100);
-			Logger.info(CAP.getStrength());
-			
+			if (CAP != null) {
+				
+				//CAP.setStrength(100);
+				Logger.info(CAP.getStrength());
+				
+			}
 		}
 	}
 	
 	@SubscribeEvent
-	public void onPlayerAttachCap(AttachCapabilitiesEvent<EntityPlayer> e) {			
-		e.addCapability(new ResourceLocation(Reference.MODID, "PlayerData"), new IPlayerData.Provider(e.getObject()));                   
+	public void onPlayerAttachCap(AttachCapabilitiesEvent<Entity> e) {	
+		if (e.getObject() instanceof EntityPlayer) {
+			e.addCapability(new ResourceLocation(Reference.MODID, "PlayerData"), new IPlayerData.Provider((EntityPlayer) e.getObject()));    
+		}
 	}
 	
 	@SubscribeEvent

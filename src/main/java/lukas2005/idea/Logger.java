@@ -27,6 +27,10 @@ public class Logger {
 		logger.log(level, marker, String.format(format, data), throwable);
 	}
 
+	public static void log(Level level, Object format) {
+		log(level, format.toString(), new Object());
+	}
+	
 	public static void fatal(String format, Object... data) {
 		log(Level.FATAL, format, data);
 	}
@@ -72,7 +76,7 @@ public class Logger {
 	}
 
 	public static void info(Object format) {
-		log(Level.INFO, format.toString(), new Object());
+		log(Level.INFO, format.toString());
 	}
 	
 	public static void info(String format, Object... data) {

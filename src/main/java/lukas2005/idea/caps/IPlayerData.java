@@ -93,38 +93,32 @@ public interface IPlayerData {
 				
 			}
 			
-			 @Override
+			@Override
 
-			 public boolean hasCapability(Capability<?> capability, EnumFacing facing)
+			public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+				
+				return capability == ModCaps.PLAYER_DATA_CAP;
 
-			 {
-
-			 return capability == ModCaps.PLAYER_DATA_CAP;
-
-			 }
+			}
 
 
 
-			 @Override
+			@SuppressWarnings("unchecked")
+			@Override
+			public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
 
-			 public <T> T getCapability(Capability<T> capability, EnumFacing facing)
-			 {
+				return (T) ModCaps.PLAYER_DATA_CAP;
 
-			 	return (T)this.instance;
-
-			 }
-
+			}
 			@Override
 			public NBTTagCompound serializeNBT() {
-				return (NBTTagCompound) this.instance.getStorage().writeNBT(ModCaps.PLAYER_DATA_CAP, this.instance, null);
+				return (NBTTagCompound) ModCaps.PLAYER_DATA_CAP.getStorage().writeNBT(ModCaps.PLAYER_DATA_CAP, this.instance, null);
 			}
 
 			@Override
 			public void deserializeNBT(NBTTagCompound nbt) {
-				this.instance.getStorage().readNBT(ModCaps.PLAYER_DATA_CAP, this.instance, null, nbt);
+				ModCaps.PLAYER_DATA_CAP.getStorage().readNBT(ModCaps.PLAYER_DATA_CAP, this.instance, null, nbt);
 			}
-			
-			
 			
 		}
 		
