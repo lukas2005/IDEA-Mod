@@ -3,6 +3,7 @@ package lukas2005.idea;
 import org.apache.logging.log4j.LogManager;
 
 import lukas2005.idea.Items.ModItems;
+import lukas2005.idea.caps.ModCaps;
 import lukas2005.idea.proxy.IProxy;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -29,13 +30,9 @@ public class IDEAMod {
 		Logger.setLogger(LogManager.getLogger(Reference.MODID.toUpperCase()));
 		Logger.info("Pre Init!");
 		
-		MinecraftForge.EVENT_BUS.register(new EventHooks());
+		ModCaps.main();
 		
-		if (!e.getSuggestedConfigurationFile().exists()) {
-			
-			
-			
-		}
+		MinecraftForge.EVENT_BUS.register(new EventHooks());
 		
 		Reference.CONFIG = new Configuration(e.getSuggestedConfigurationFile());
 		
